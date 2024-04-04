@@ -38,5 +38,14 @@
 [diff]
     colorMoved = default
 
-[include]
-    path = /home/nacho/.dotfiles-private/.gitconfig
+# This user info can be public
+[user]
+    name = Nacho114
+    email = 17376073+Nacho114@users.noreply.github.com
+    signingkey = 87B702833F9C8016
+
+[commit]
+	gpgsign = true
+
+[gpg]
+    program = gpg

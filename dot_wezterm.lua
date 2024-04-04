@@ -14,12 +14,15 @@ config.window_background_opacity = 0.9
 config.enable_tab_bar = false
 config.window_decorations = "NONE"
 
+config.default_prog = { 'distrobox', 'enter', 'arch_dev' }
+
+config.window_close_confirmation = 'NeverPrompt'
+
 config.window_padding = {
     left = 2,
     right = 2,
     top = 2,
-    bottom = 2,
-    -- bottom = -4,
+    bottom = -4,
 }
 
 -- and finally, return the configuration to wezterm

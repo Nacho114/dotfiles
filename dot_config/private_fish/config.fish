@@ -32,7 +32,7 @@ set --export PATH $HOME/.cargo/bin $PATH
 # nvim version managed by bob
 set -gx PATH /home/nacho/.local/share/bob/nvim-bin $PATH
 
-alias cat "batcat"
+alias cat "bat"
 alias fd "fdfind"
 alias top "btm -b"
 alias vi "nvim"
