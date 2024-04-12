@@ -33,7 +33,6 @@ set --export PATH $HOME/.cargo/bin $PATH
 set -gx PATH /home/nacho/.local/share/bob/nvim-bin $PATH
 
 alias cat "bat"
-alias fd "fdfind"
 alias top "btm -b"
 alias vi "nvim"
 alias rm="trash-put"
