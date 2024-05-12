@@ -25,4 +25,8 @@ alias top "btm -b"
 alias vi "nvim"
 alias rm="trash-put"
 
+if command -q nix-your-shell
+  nix-your-shell fish | source
+end
+
 zoxide init fish | source

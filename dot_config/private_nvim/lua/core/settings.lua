@@ -37,6 +37,6 @@ vim.opt.termguicolors = true
 vim.opt.colorcolumn = "80"
 
 -- Spelling
-vim.opt.spelllang = 'en_us'
+vim.opt.spelllang = {'en_us', 'es'}
 vim.opt.spell = true
 vim.opt.spelloptions = "camel"
