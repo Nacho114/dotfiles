@@ -3,7 +3,7 @@ return {
     -- Optional dependencies
     -- dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {},
-    cmd = "Oil", -- This makes it load-lazy, needed to have netrw running at
+    --cmd = "Oil", -- This makes it load-lazy, needed to have netrw running at
     -- first, note that this is needed for spelllang to download missing dict!
     config = function()
         require("oil").setup({
