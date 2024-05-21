@@ -85,6 +85,9 @@ return {
                     timeout_ms = 10000,
                 },
             })
+            
+            -- Manually added package that is installed via nix
+            require'lspconfig'.marksman.setup{}
 
             require('mason-lspconfig').setup({
                 -- run :help lspconfig-all to see the list of all lsp servers
