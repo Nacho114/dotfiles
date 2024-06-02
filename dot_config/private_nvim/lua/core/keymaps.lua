@@ -15,7 +15,3 @@ vim.api.nvim_set_keymap('n', ';', ':', { noremap = true })
 
 -- Save All
 vim.keymap.set("n", "<leader>w", "<cmd>wa!<CR>", { desc = "Save all" })
-
--- Spelling
-vim.api.nvim_set_keymap('n', '<leader>sa', 'zg', { noremap = true, silent = true, desc = "Spell check" })
-vim.api.nvim_set_keymap('n', '<leader>sc', 'z=', { noremap = true, silent = true, desc = "Add word to dict" })
