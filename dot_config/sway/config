@@ -1,75 +1,48 @@
-# Start-up applications
-exec autotiling 
-
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
 # Read `man 5 sway` for a complete reference.
 
-### Variables
-#
+### Start-up applications  -----------------------------------------------------
+
+exec autotiling 
+exec /home/nacho/.nix-profile/bin/megasync
+
+### bindings  -----------------------------------------------------------------
+
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
+
 set $term foot
 set $browser firefox
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
+set $files thunar
 set $menu wofi --show run
+set $screenshot shotman --capture region
 
-### Output configuration
-#
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
 #output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
-#
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000'
+
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
-### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
-
 ### Key bindings
 #
 # Basics:
-#
-    # Start a terminal
-    bindsym $mod+t exec $term
 
+    bindsym $mod+t exec $term
     bindsym $mod+b exec $browser
+    bindsym $mod+f exec $files
+    bindsym $mod+p exec $screenshot
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -187,21 +160,75 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# Swap Caps Lock with Left Shift
+
+###----------------------------------------------------------------------------
+### Swap Caps Lock with Left Shift
+###----------------------------------------------------------------------------
+
 input type:keyboard xkb_options ctrl:nocaps
 
-input 1267:32:Elan_Touchpad {
-    tap enabled
-    natural_scroll enabled
-    accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
-    pointer_accel 0.8 # set mouse sensitivity (between -1 and 1)
+###----------------------------------------------------------------------------
+### Input configuration
+###----------------------------------------------------------------------------
+
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+### Touchpad --------------------------------------------------------------------
+
+# evdev is an Xorg input driver	for Linux's generic event devices,
+# including most mice, keyboards, tablets and touchscreens.
+input * xkb_rules evdev
+
+input "*" {
+  xkb_layout us
+  # xkb_variant colemak
 }
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +4%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -4%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+input type:touchpad {
+  dwt enabled
+  tap enabled
+  natural_scroll enabled
+  pointer_accel 0.5 # set mouse sensitivity (between -1 and 1)
+}
 
-#
+### Screen --------------------------------------------------------------------
+
+set $wide-lg-home "LG Electronics LG HDR WQHD 203NTJJ83188"
+
+output $wide-lg-home {
+    mode 3440x1440@49.987Hz 
+}
+
+gaps inner 30
+gaps outer 70
+
+bindsym $mod+Shift+m Output eDP-1 toggle 
+
+set $laptop "AU Optronics 0x103D Unknown"
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
+
+### ---------------------------------------------------------------------------
+
+# Brightness
+bindsym XF86MonBrightnessDown exec light -U 10
+bindsym XF86MonBrightnessUp exec light -A 10
+
+# Volume
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+font pango:Fira Sans SemiBold 10
+
+# border without title bar
+default_border pixel 3
+client.focused #000000 #5e81ac #ffffff
+
+# https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
@@ -210,13 +237,22 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    status_command while date +'%Y-%m-%d'; do sleep 1; done
+
+        # Status command to show date, time, battery, and day name
+    # status_command while true; do \
+    #     date "+%Y-%m-%d %X %A" && echo -n " " && acpi -b | awk '{print $4 " " $5}' | sed 's/,//'; \
+    #     sleep 1; \
+    # done
+
 
     colors {
         statusline #ffffff
         background #323232
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
+
+    font pango:Sans 14
 }
 
 include @sysconfdir@/sway/config.d/*
