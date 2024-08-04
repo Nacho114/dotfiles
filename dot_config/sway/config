@@ -41,20 +41,40 @@ exec swayidle -w \
 
 ### Key bindings
 #
-# Basics:
-
-    bindsym $mod+t exec $term
-    bindsym $mod+b exec $browser
-    bindsym $mod+f exec $files
-    bindsym $mod+p exec $screenshot
-    bindsym $mod+Shift+w exec foot -e nmtui
-    bindsym $mod+Control+l exec $lock
-
-    # Kill focused window
-    bindsym $mod+Shift+q kill
-
-    # Start your launcher
     bindsym $mod+space exec $menu
+
+    # Use menu name as a shortcut hint
+    set $options "options -  term: t | browser: b | files: f | quit: q | wifi: w | lock: l | screenshot: s | toggle gap: g | reload config c"
+
+    mode $options {
+        bindsym t exec $term; mode "default"
+        bindsym b exec $browser; mode "default"
+        bindsym f exec $files; mode "default"
+        bindsym q kill; mode "default"
+
+        bindsym w exec foot -e nmtui; mode "default"
+        bindsym l exec $lock; mode "default"
+        bindsym s exec $screenshot
+        bindsym g exec $HOME/.config/sway/toggle-gap.sh; mode "default"
+        # Reload the configuration file
+        bindsym c reload; mode "default"
+
+        # Return to default mode
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+    bindsym $mod+o mode $options
+
+    set $audio "audio: prev: h | play/pause: k | next: l"
+    mode $audio {
+        bindsym $left exec playerctl previous; mode "default"
+        bindsym $right exec playerctl next; mode "default"
+        bindsym $up exec playerctl play-pause; mode "default"
+        # Return to default mode
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+    bindsym $mod+a mode $audio
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -63,11 +83,8 @@ exec swayidle -w \
     # mouse button for dragging.
     floating_modifier $mod normal
 
-    # Reload the configuration file
-    bindsym $mod+Shift+c reload
-
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    #bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -77,13 +94,6 @@ exec swayidle -w \
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
 
-    # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
-
-#
 # Workspaces:
 #
     # Switch to workspace
@@ -119,53 +129,55 @@ exec swayidle -w \
     #bindsym $mod+b splith
     #bindsym $mod+v splitv
 
-    # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    set $pane "pane - move: hjkl | stacking: s | toggle split: e | toggle floating: g | resize: r | fullscreen: f"
+    mode $pane {
+        # Move the focused window with the same, but add Shift
+        bindsym $left move left
+        bindsym $down move down
+        bindsym $up move up
+        bindsym $right move right
 
-    # Make the current focus fullscreen
-    bindsym $mod+m fullscreen
+        # Switch the current container between different layout styles
+        bindsym s layout stacking; mode "default"
+        bindsym e layout toggle split; mode "default"
+        # Toggle the current focus between tiling and floating mode
+        bindsym g floating toggle; mode "default"
 
-    # Toggle the current focus between tiling and floating mode
-    bindsym $mod+g floating toggle
+        bindsym f fullscreen; mode "default"
+
+        bindsym r mode "resize"
+
+        # Return to default mode
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+
+        # Scratch$mod+pad:
+        # Sway has a "scratchpad", which is a bag of holding for windows.
+        # You can send windows there and get them back later.
+        # Move the currently focused window to the scratchpad
+        #bindsym $mod+Shift+minus move scratchpad
+        # Show the next scratchpad window or hide the focused scratchpad window.
+        # If there are multiple scratchpad windows, this command cycles through them.
+        #bindsym minus scratchpad show
+    }
+    bindsym $mod+p mode $pane 
+
 
     # Swap focus between the tiling area and the floating area
     # bindsym $mod+Shift+g focus mode_toggle
 
-    # Move focus to the parent container
-    bindsym $mod+a focus parent
-#
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
-
-    # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
-
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
-#
 # Resizing containers:
 #
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $right resize shrink width 10px
+    bindsym $left resize shrink width 10px
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
-    bindsym $left resize grow width 10px
+    bindsym $right resize grow width 10px
 
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
-
 
 ###----------------------------------------------------------------------------
 ### Swap Caps Lock with Left Shift
@@ -209,7 +221,6 @@ output $wide-lg-home {
 gaps inner 30
 gaps outer 70
 
-bindsym $mod+Shift+g $HOME/.config/sway/toggle-gap.sh
 
 set $laptop "AU Optronics 0x103D Unknown"
 bindswitch --reload --locked lid:on output $laptop disable

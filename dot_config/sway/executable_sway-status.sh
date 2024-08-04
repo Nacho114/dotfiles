@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Get the current date and time
-date=$(date "+%a %F %R")
+date=$(date "+%R\t%a %F")
 
 # Get volume and mute status
 volume=$(amixer get Master | awk -F'[][]' '/Right:/ { vol=$2; mute=$4 } END { print vol, mute }')

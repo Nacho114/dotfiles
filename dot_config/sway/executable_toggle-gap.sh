@@ -17,5 +17,3 @@ else
     swaymsg gaps inner all set $gap_inner_closed
     swaymsg gaps outer all set $gap_outer_closed
 fi
-
-echo $lid_state
