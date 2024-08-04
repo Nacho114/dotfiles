@@ -30,5 +30,5 @@ else
 fi
 
 # Print the status bar
-echo -e "$date\t| V: $volume_display | B: $battery | W: $wifi_status "
+echo -e "$date\t V: $volume_display | B: $battery | W: $wifi_status "
 

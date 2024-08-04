@@ -3,7 +3,10 @@
 ### Start-up applications  -----------------------------------------------------
 
 exec autotiling 
-exec /home/nacho/.nix-profile/bin/megasync
+exec megasync
+
+# Move Megasync to the 5th workspace
+for_window [class="MEGAsync"] move to workspace number 5
 
 ### bindings  -----------------------------------------------------------------
 
@@ -128,7 +131,7 @@ exec swayidle -w \
     bindsym $mod+g floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+Shift+g focus mode_toggle
+    # bindsym $mod+Shift+g focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
@@ -152,10 +155,10 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
+    bindsym $right resize shrink width 10px
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $left resize grow width 10px
 
     # Return to default mode
     bindsym Return mode "default"
@@ -206,7 +209,7 @@ output $wide-lg-home {
 gaps inner 30
 gaps outer 70
 
-bindsym $mod+Shift+m Output eDP-1 toggle 
+bindsym $mod+Shift+g $HOME/.config/sway/toggle-gap.sh
 
 set $laptop "AU Optronics 0x103D Unknown"
 bindswitch --reload --locked lid:on output $laptop disable
