@@ -21,13 +21,14 @@ set $browser firefox
 set $files thunar
 set $menu wofi --show run
 set $screenshot shotman --capture region
+set $lock swaylock -f -c 000000
 
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
 #output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 ### Idle configuration
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
+         timeout 300 $lock \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 000000'
 
@@ -43,6 +44,8 @@ exec swayidle -w \
     bindsym $mod+b exec $browser
     bindsym $mod+f exec $files
     bindsym $mod+p exec $screenshot
+    bindsym $mod+Shift+w exec foot -e nmtui
+    bindsym $mod+Control+l exec $lock
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -233,18 +236,14 @@ exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSO
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
+    # swaybar_command waybar
     position bottom
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d'; do sleep 1; done
+    # status_command while date +'%Y-%m-%d'; do sleep 1; done
 
-        # Status command to show date, time, battery, and day name
-    # status_command while true; do \
-    #     date "+%Y-%m-%d %X %A" && echo -n " " && acpi -b | awk '{print $4 " " $5}' | sed 's/,//'; \
-    #     sleep 1; \
-    # done
-
+    status_command while $HOME/.config/sway/sway-status.sh; do sleep 1; done
 
     colors {
         statusline #ffffff
