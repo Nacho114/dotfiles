@@ -1,5 +1,11 @@
 # Read `man 5 sway` for a complete reference.
 
+# TIP: Toggle behavior
+# bindsym $whatever mode $mymode; exec $dostuff
+# mode $mymode {
+#     bindsym Escape mode default; exec $undostuff
+# }
+
 ### Start-up applications  -----------------------------------------------------
 
 exec autotiling 
@@ -24,27 +30,26 @@ set $browser firefox
 set $files thunar
 set $menu wofi --show run
 set $screenshot shotman --capture region
-set $lock swaylock -f -c 000000
+set $lock 'swaylock -f -c 0000ff'
 
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-#output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-
-### Idle configuration
-exec swayidle -w \
-         timeout 300 $lock \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
+set $bg-image /home/nacho/Pictures/wallpaper/totoro.png 
+output * bg $bg-image fill
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
+exec swayidle -w \
+         timeout 300 $lock \
+         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep $lock
 
 ### Key bindings
 #
     bindsym $mod+space exec $menu
 
     # Use menu name as a shortcut hint
-    set $options "options -  term: t | browser: b | files: f | quit: q | wifi: w | lock: l | screenshot: s | toggle gap: g | reload config c"
+    set $options "options -  term: t | browser: b | files: f | quit: q | wifi: w | screenshot: s | toggle gap: g | reload config c"
 
     mode $options {
         bindsym t exec $term; mode "default"
@@ -53,7 +58,6 @@ exec swayidle -w \
         bindsym q kill; mode "default"
 
         bindsym w exec foot -e nmtui; mode "default"
-        bindsym l exec $lock; mode "default"
         bindsym s exec $screenshot
         bindsym g exec $HOME/.config/sway/toggle-gap.sh; mode "default"
         # Reload the configuration file
@@ -75,6 +79,30 @@ exec swayidle -w \
         bindsym Escape mode "default"
     }
     bindsym $mod+a mode $audio
+
+    set $suspend "suspend:  lock: l | idle: i | suspend: s | idle off: q"
+    mode $suspend {
+        # bindsym s exec swayidle -w timeout 5 'swaylock -f -c 000000' ; mode "default"
+        
+        bindsym i mode "default"; exec swayidle -w \
+                         timeout 300 $lock \
+                         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+                         before-sleep $lock
+
+        bindsym s mode "default"; exec swayidle -w \
+                         timeout 1 $lock \
+                         timeout 3 'swaymsg "output * power off"' resume 'swaymsg "output * power on"; pkill -9 "swayidle"' \
+                         before-sleep $lock
+
+        bindsym q exec pkill -9 "swayidle"; mode "default"
+        bindsym l exec $lock; mode "default"
+
+        # Return to default mode
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+    bindsym $mod+x mode $suspend
+
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -257,7 +285,7 @@ bar {
     # The default just shows the current date and time.
     # status_command while date +'%Y-%m-%d'; do sleep 1; done
 
-    status_command while $HOME/.config/sway/sway-status.sh; do sleep 1; done
+    status_command while $HOME/.config/sway/sway-status.sh; do sleep 3; done
 
     colors {
         statusline #ffffff

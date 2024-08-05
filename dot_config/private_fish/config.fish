@@ -25,6 +25,8 @@ alias top "btm -b"
 alias vi "nvim"
 alias rm="trash-put"
 
+set -gx EDITOR nvim 
+
 if command -q nix-your-shell
   nix-your-shell fish | source
 end
