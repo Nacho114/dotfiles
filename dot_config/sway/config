@@ -29,12 +29,11 @@ set $term foot
 set $browser firefox
 set $files thunar
 set $menu wofi --show run
-set $screenshot shotman --capture region
+set $screenshot grim -g "$(slurp)" - | wl-copy
 set $lock 'swaylock -f -c 0000ff'
+set $sway-path $HOME/.config/sway
 
-# Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-set $bg-image /home/nacho/Pictures/wallpaper/totoro.png 
-output * bg $bg-image fill
+output * bg $sway-path/wallpaper/totoro.png fill
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -58,8 +57,8 @@ exec swayidle -w \
         bindsym q kill; mode "default"
 
         bindsym w exec foot -e nmtui; mode "default"
-        bindsym s exec $screenshot
-        bindsym g exec $HOME/.config/sway/toggle-gap.sh; mode "default"
+        bindsym s exec $screenshot; mode "default"
+        bindsym g exec $sway-path/toggle-gap.sh; mode "default"
         # Reload the configuration file
         bindsym c reload; mode "default"
 
@@ -102,7 +101,6 @@ exec swayidle -w \
         bindsym Escape mode "default"
     }
     bindsym $mod+x mode $suspend
-
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -285,7 +283,7 @@ bar {
     # The default just shows the current date and time.
     # status_command while date +'%Y-%m-%d'; do sleep 1; done
 
-    status_command while $HOME/.config/sway/sway-status.sh; do sleep 3; done
+    status_command while $sway-path/sway-status.sh; do sleep 3; done
 
     colors {
         statusline #ffffff

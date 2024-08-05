@@ -29,5 +29,5 @@ fi
 idle_status=$(check_swayidle)
 
 # Print the status bar
-echo -e "$date\t V: $volume_display | B: $battery | W: $wifi_status | $idle_status "
+echo -e "$date\t\t\t\t\t V: $volume_display | B: $battery | W: $wifi_status | $idle_status "
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Default gap settings
-gap_inner_open=4
-gap_outer_open=2
+gap_inner_open=0
+gap_outer_open=0
 gap_inner_closed=30
 gap_outer_closed=70
 
