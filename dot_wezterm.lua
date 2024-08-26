@@ -14,13 +14,11 @@ config.window_background_opacity = 0.9
 config.enable_tab_bar = false
 config.window_decorations = "NONE"
 
-config.default_prog = { 'distrobox', 'enter', 'arch_dev' }
-
+-- config.default_prog = { 'distrobox', 'enter', 'arch_dev' }
 -- close the terminal when I exit distrobox
-config.exit_behavior = 'Close'
+-- config.exit_behavior = 'Close'
 
 config.window_close_confirmation = 'NeverPrompt'
-
 
 config.window_padding = {
     left = 2,
