@@ -27,8 +27,4 @@ alias rm="trash-put"
 
 set -gx EDITOR nvim 
 
-if command -q nix-your-shell
-  nix-your-shell fish | source
-end
-
 zoxide init fish | source
