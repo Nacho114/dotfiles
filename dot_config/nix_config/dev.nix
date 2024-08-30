@@ -16,7 +16,6 @@
 
     # general utilities
     trash-cli
-    wl-clipboard
     tmux
     tldr
     bat
@@ -38,6 +37,8 @@
     jre17_minimal
     nodejs_22
     tree-sitter
+    wl-clipboard # wayland clipboard
+    xclip # X-server clipboard
 
 
     #visidata
