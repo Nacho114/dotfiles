@@ -37,6 +37,7 @@
     jre17_minimal
     nodejs_22
     tree-sitter
+    marksman
     wl-clipboard # wayland clipboard
     xclip # X-server clipboard
 
