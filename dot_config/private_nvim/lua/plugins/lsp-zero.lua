@@ -88,7 +88,7 @@ return {
 
             require('mason-lspconfig').setup({
                 -- run :help lspconfig-all to see the list of all lsp servers
-                ensure_installed = { 'rust_analyzer', 'pyright', 'svelte', 'yamlls', 'jsonls', 'html', 'cssls', 'lua_ls' },
+                ensure_installed = { 'rust_analyzer', 'pyright', 'svelte', 'yamlls', 'jsonls', 'html', 'cssls', 'lua_ls', 'marksman' },
                 handlers = {
                     lsp_zero.default_setup,
                     lua_ls = function()
