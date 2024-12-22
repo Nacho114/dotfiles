@@ -86,9 +86,6 @@ return {
                 },
             })
 
-            -- Manually added package that is installed via nix
-            require 'lspconfig'.marksman.setup {}
-
             require('mason-lspconfig').setup({
                 -- run :help lspconfig-all to see the list of all lsp servers
                 ensure_installed = { 'rust_analyzer', 'pyright', 'svelte', 'yamlls', 'jsonls', 'html', 'cssls', 'lua_ls' },
