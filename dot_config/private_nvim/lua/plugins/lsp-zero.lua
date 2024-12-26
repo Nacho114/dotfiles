@@ -96,6 +96,17 @@ return {
                         local lua_opts = lsp_zero.nvim_lua_ls()
                         require('lspconfig').lua_ls.setup(lua_opts)
                     end,
+
+                    ts_ls = function()
+                        require('lspconfig').ts_ls.setup({
+                            on_attach = function(client, bufnr)
+                                -- Disable auto format via ts_ls since in general
+                                -- we use eslint / prettier
+                                client.server_capabilities.documentFormattingProvider = false
+                                client.server_capabilities.documentRangeFormattingProvider = false
+                            end,
+                        })
+                    end,
                 }
             })
         end
