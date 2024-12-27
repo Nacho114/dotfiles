@@ -13,8 +13,14 @@ return {
                 -- "size",
                 -- "mtime",
             },
-            skip_confirm_for_simple_edits = false,
+            skip_confirm_for_simple_edits = true,
             delete_to_trash = true,
+            view_options = {
+                show_hidden = true,
+                is_always_hidden = function(name, _)
+                    return name == "node_modules" or name == ".git" or name == 'DS_Store'
+                end,
+            },
         })
         local oil_status, oil = pcall(require, "oil")
         if oil_status then
