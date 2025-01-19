@@ -101,7 +101,6 @@ return {
                         require('lspconfig').ts_ls.setup({
                             on_attach = function(client, bufnr)
                                 -- Disable auto format via ts_ls since in general
-                                -- we use eslint / prettier
                                 client.server_capabilities.documentFormattingProvider = false
                                 client.server_capabilities.documentRangeFormattingProvider = false
                             end,
