@@ -39,5 +39,6 @@ return {
         vim.keymap.set('n', '<leader>rg', builtin.live_grep, { desc = '[R]ip [G]rep' })
         vim.keymap.set('n', '<leader>fg', builtin.git_files, { desc = '[F]ind [G]it files' })
         vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[F]ind [K]eymaps' })
+        vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[F]ind [B]uffers' })
     end,
 }
