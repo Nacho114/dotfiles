@@ -30,6 +30,7 @@ alias top "btm -b"
 set -gx EDITOR nvim 
 
 zoxide init fish | source
+starship init fish | source
 
 # pnpm
 set -gx PNPM_HOME "/Users/nacho/Library/pnpm"
