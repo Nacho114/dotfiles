@@ -43,7 +43,7 @@
 [user]
     name = Nacho114
     email = 17376073+Nacho114@users.noreply.github.com
-    signingkey = 6D93240ECFEE0E72
+    signingkey = 51374D1A94311AA7
 
 [commit]
 	gpgsign = true
