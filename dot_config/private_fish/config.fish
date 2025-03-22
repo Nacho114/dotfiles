@@ -1,3 +1,7 @@
+eval (/opt/homebrew/bin/brew shellenv)
+
+set -x GPG_TTY (tty)
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
@@ -20,10 +24,8 @@ end
 
 ## vi bindings end ------
 
-alias cat "bat"
-alias top "btm -b"
 alias vi "nvim"
-alias rm="trash-put"
+alias top "btm -b"
 
 set -gx EDITOR nvim 
 
