@@ -67,23 +67,24 @@ automatically-unhide-macos-hidden-apps = true
 #     outer.right =      0
 
 # Big monitor
-[gaps]
-    inner.horizontal = 100
-    inner.vertical =   100
-    outer.left =       150
-    outer.bottom =     50
-    outer.top =        50
-    outer.right =      150
-
-
-# Very wide monitor
 # [gaps]
 #     inner.horizontal = 100
 #     inner.vertical =   100
-#     outer.left =       250
+#     outer.left =       150
 #     outer.bottom =     50
 #     outer.top =        50
-#     outer.right =      250
+#     outer.right =      150
+
+
+
+# Very wide monitor
+[gaps]
+    inner.horizontal = [{ monitor."LG HDR WQHD" = 20  },{ monitor."P27h-20" = 20  }, 0]
+    inner.vertical =   [{ monitor."LG HDR WQHD" = 20  },{ monitor."P27h-20" = 20  }, 0]
+    outer.left =       [{ monitor."LG HDR WQHD" = 250 },{ monitor."P27h-20" = 150 }, 0]
+    outer.bottom =     [{ monitor."LG HDR WQHD" = 40  },{ monitor."P27h-20" = 50  }, 0]
+    outer.top =        [{ monitor."LG HDR WQHD" = 40  },{ monitor."P27h-20" = 50  }, 0]
+    outer.right =      [{ monitor."LG HDR WQHD" = 250 },{ monitor."P27h-20" = 150 }, 0]
  
 
 # 'main' binding mode declaration
