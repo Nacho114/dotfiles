@@ -1,0 +1,54 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+add_newline = true
+
+# Character configuration
+[character]
+error_symbol = '[✗](bold red)'
+
+# Disable modules you don't want
+[package]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[python]
+disabled = true
+
+# Directory configuration
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bold blue"
+
+# Git branch configuration
+[git_branch]
+format = "on [$symbol$branch]($style) "
+style = "bold purple"
+
+# Git status - simplified to avoid warnings
+[git_status]
+format = '[$all_status$ahead_behind]($style) '
+style = "bold red"
+conflicted = "="
+untracked = "?"
+stashed = ' '
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+
+# Command duration
+[cmd_duration]
+min_time = 2000
+format = "took [$duration]($style) "
+
+# Jobs indicator
+[jobs]
+format = "[$number]($style) "
+style = "bold blue"
+number_threshold = 1
+symbol_threshold = 1

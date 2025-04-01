@@ -66,14 +66,24 @@ automatically-unhide-macos-hidden-apps = true
 #     outer.top =        0
 #     outer.right =      0
 
-# Wide monitor
+# Big monitor
 [gaps]
     inner.horizontal = 100
     inner.vertical =   100
-    outer.left =       250
+    outer.left =       150
     outer.bottom =     50
     outer.top =        50
-    outer.right =      250
+    outer.right =      150
+
+
+# Very wide monitor
+# [gaps]
+#     inner.horizontal = 100
+#     inner.vertical =   100
+#     outer.left =       250
+#     outer.bottom =     50
+#     outer.top =        50
+#     outer.right =      250
  
 
 # 'main' binding mode declaration
