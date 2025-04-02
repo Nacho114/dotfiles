@@ -63,6 +63,18 @@ run = 'layout floating'
 if.app-id = 'com.apple.finder'
 run = 'layout floating'
 
+[[on-window-detected]]
+if.app-id = 'com.1password.1password'
+run = 'layout floating'
+
+# ------------------------------------------------------------------
+#  
+# Use the the following command to find the app-id
+#
+# mdls -name kMDItemCFBundleIdentifier -raw "/path/to/YourApp.app"
+#
+# ------------------------------------------------------------------
+
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
