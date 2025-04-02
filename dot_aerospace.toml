@@ -43,6 +43,26 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
 automatically-unhide-macos-hidden-apps = true
 
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iCal'
+run = 'move-node-to-workspace 7'
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace 8'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Notes'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
@@ -57,7 +77,6 @@ automatically-unhide-macos-hidden-apps = true
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 
-# Standard
 # [gaps]
 #     inner.horizontal = 0
 #     inner.vertical =   0
@@ -66,18 +85,6 @@ automatically-unhide-macos-hidden-apps = true
 #     outer.top =        0
 #     outer.right =      0
 
-# Big monitor
-# [gaps]
-#     inner.horizontal = 100
-#     inner.vertical =   100
-#     outer.left =       150
-#     outer.bottom =     50
-#     outer.top =        50
-#     outer.right =      150
-
-
-
-# Very wide monitor
 [gaps]
     inner.horizontal = [{ monitor."LG HDR WQHD" = 20  },{ monitor."P27h-20" = 20  }, 0]
     inner.vertical =   [{ monitor."LG HDR WQHD" = 20  },{ monitor."P27h-20" = 20  }, 0]
