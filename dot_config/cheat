@@ -1,0 +1,5 @@
+
+gcloud auth application-default login && gcloud auth login
+
+uv run gcloud_functions/end2end/run.py
+

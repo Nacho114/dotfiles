@@ -34,3 +34,9 @@ end, { desc = "Save all or run Prettier on web files" })
 
 -- Show diagnostics in floating window
 vim.keymap.set('n', '<leader>cv', vim.diagnostic.open_float, { desc = "Show diagnostics in floating window" })
+
+vim.keymap.set('n', '<leader>rf', function()
+    local filename = vim.fn.expand('%:.')
+    vim.cmd("let @+ = '" .. filename .. "'")
+    vim.cmd("echomsg 'Relative filename copied to clipboard: " .. filename .. "'")
+end, { desc = "Copy Relative Filename" })
