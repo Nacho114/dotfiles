@@ -21,7 +21,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 30
+accordion-padding = 10
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -67,6 +67,11 @@ run = 'layout floating'
 if.app-id = 'com.1password.1password'
 run = 'layout floating'
 
+[[on-window-detected]]
+if.app-id = 'net.kovidgoyal.kitty'
+run = 'layout floating'
+
+
 # ------------------------------------------------------------------
 #  
 # Use the the following command to find the app-id
@@ -100,10 +105,10 @@ run = 'layout floating'
 [gaps]
     inner.horizontal = [{ monitor."LG HDR WQHD" = 20  },{ monitor."P27h-20" = 20  }, 0]
     inner.vertical =   [{ monitor."LG HDR WQHD" = 20  },{ monitor."P27h-20" = 20  }, 0]
-    outer.left =       [{ monitor."LG HDR WQHD" = 250 },{ monitor."P27h-20" = 150 }, 0]
+    outer.left =       [{ monitor."LG HDR WQHD" = 200 },{ monitor."P27h-20" = 150 }, 0]
     outer.bottom =     [{ monitor."LG HDR WQHD" = 40  },{ monitor."P27h-20" = 50  }, 0]
     outer.top =        [{ monitor."LG HDR WQHD" = 40  },{ monitor."P27h-20" = 50  }, 0]
-    outer.right =      [{ monitor."LG HDR WQHD" = 250 },{ monitor."P27h-20" = 150 }, 0]
+    outer.right =      [{ monitor."LG HDR WQHD" = 200 },{ monitor."P27h-20" = 150 }, 0]
  
 
 # 'main' binding mode declaration
@@ -142,7 +147,7 @@ run = 'layout floating'
     tell application "Spotify" to playpause'
     '''
 
-    alt-f = 'exec-and-forget open -n -R ~'
+    # alt-f = 'exec-and-forget open -n -R ~'
     alt-t = 'exec-and-forget open -n -a /Applications/iTerm.app/'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
