@@ -52,3 +52,8 @@ format = "[$number]($style) "
 style = "bold blue"
 number_threshold = 1
 symbol_threshold = 1
+
+[time]
+disabled = false
+format = "at [$time]($style) "
+time_format = "%R" # %R is equivalent to %H:%M
