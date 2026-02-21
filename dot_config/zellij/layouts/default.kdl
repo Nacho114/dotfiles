@@ -2,7 +2,7 @@ layout {
     pane size=1 borderless=true {
         plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
             format_left  "{mode}#[fg=#565f89]{tabs}"
-            format_right "#[fg=#9ece6a,bold]  {command_git_branch} #[fg=#565f89] {session}"
+            format_right "#[fg=#565f89] {session}"
             format_space "#[bg=#1d2135]"
 
             mode_normal       "#[bg=#1d2135,fg=#7aa2f7,bold] NORMAL "
@@ -19,11 +19,6 @@ layout {
 
             tab_normal "#[fg=#565f89] {name} "
             tab_active "#[fg=#7aa2f7,bold] {name} "
-
-            command_git_branch_command     "/Users/nacho/.config/zellij/git-branch.sh"
-            command_git_branch_format     "#[fg=#9ece6a]{stdout}"
-            command_git_branch_interval   "1"
-            command_git_branch_rendermode "dynamic"
 
             session "#[fg=#565f89]{name}"
         }

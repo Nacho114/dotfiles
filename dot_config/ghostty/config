@@ -49,6 +49,9 @@
 # resize-overlay-duration = 4s 200ms
 
 font-size = 14
+font-family = FiraCode Nerd Font Mono
+copy-on-select = true
+confirm-close-surface = false
 
 # Tokyo Night Storm (via folke/tokyonight.nvim)
 background = #24283b
@@ -76,3 +79,11 @@ palette = 15=#c0caf5
 
 # Remove titlebar
 window-decoration = false
+
+macos-option-as-alt = left
+keybind = alt+arrow_right=unbind
+keybind = alt+arrow_left=unbind
+shell-integration = fish
+mouse-hide-while-typing = true
+link-url = true
+quit-after-last-window-closed = true

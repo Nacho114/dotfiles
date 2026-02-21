@@ -59,9 +59,9 @@ run = 'move-node-to-workspace 8'
 if.app-id = 'com.apple.Notes'
 run = 'layout floating'
 
-[[on-window-detected]]
-if.app-id = 'com.apple.finder'
-run = 'layout floating'
+# [[on-window-detected]]
+# if.app-id = 'com.apple.finder'
+# run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.1password.1password'
@@ -148,7 +148,7 @@ run = 'layout floating'
     '''
 
     # alt-f = 'exec-and-forget open -n -R ~'
-    alt-t = 'exec-and-forget open -n -a /Applications/iTerm.app/'
+    alt-t = 'exec-and-forget open -n -a /Applications/Ghostty.app/'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
     alt-slash = 'layout tiles horizontal vertical'
