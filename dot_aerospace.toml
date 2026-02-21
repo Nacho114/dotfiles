@@ -43,6 +43,17 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
 automatically-unhide-macos-hidden-apps = true
 
+[workspace-to-monitor-force-assignment]
+    1 = 'main'
+    2 = 'main'
+    3 = 'main'
+    4 = 'main'
+    5 = 'main'
+    6 = 'secondary'
+    7 = 'secondary'
+    8 = 'secondary'
+    9 = 'secondary'
+
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = 'move-node-to-workspace 3'
@@ -69,6 +80,14 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'ru.keepcoder.Telegram'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'WhatsApp'
 run = 'layout floating'
 
 
@@ -151,6 +170,8 @@ run = 'layout floating'
     alt-t = 'exec-and-forget open -n -a /Applications/Ghostty.app/'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
+    alt-m = 'fullscreen'
+
     alt-slash = 'layout tiles horizontal vertical'
     alt-comma = 'layout accordion horizontal vertical'
 
