@@ -1,0 +1,39 @@
+layout {
+    pane size=1 borderless=true {
+        plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
+            format_left  "{mode}#[fg=#565f89]{tabs}"
+            format_right "#[fg=#9ece6a,bold]  {command_git_branch} #[fg=#565f89] {session}"
+            format_space "#[bg=#1d2135]"
+
+            mode_normal       "#[bg=#1d2135,fg=#7aa2f7,bold] NORMAL "
+            mode_locked       "#[bg=#1d2135,fg=#f7768e,bold] LOCKED "
+            mode_pane         "#[bg=#1d2135,fg=#7dcfff,bold] PANE   "
+            mode_tab          "#[bg=#1d2135,fg=#bb9af7,bold] TAB    "
+            mode_resize       "#[bg=#1d2135,fg=#ff9e64,bold] RESIZE "
+            mode_scroll       "#[bg=#1d2135,fg=#e0af68,bold] SCROLL "
+            mode_tmux         "#[bg=#1d2135,fg=#e0af68,bold] TMUX   "
+            mode_enter_search "#[bg=#1d2135,fg=#e0af68,bold] SEARCH "
+            mode_search       "#[bg=#1d2135,fg=#e0af68,bold] SEARCH "
+            mode_rename_tab   "#[bg=#1d2135,fg=#bb9af7,bold] RENAME "
+            mode_rename_pane  "#[bg=#1d2135,fg=#bb9af7,bold] RENAME "
+
+            tab_normal "#[fg=#565f89] {name} "
+            tab_active "#[fg=#7aa2f7,bold] {name} "
+
+            command_git_branch_command     "/Users/nacho/.config/zellij/git-branch.sh"
+            command_git_branch_format     "#[fg=#9ece6a]{stdout}"
+            command_git_branch_interval   "1"
+            command_git_branch_rendermode "dynamic"
+
+            session "#[fg=#565f89]{name}"
+        }
+    }
+
+    pane split_direction="vertical" {
+        pane
+    }
+
+    pane size=1 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+}
