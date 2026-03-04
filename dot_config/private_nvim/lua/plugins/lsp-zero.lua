@@ -75,16 +75,7 @@ return {
                 vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', { buffer = bufnr },
                     { desc = "[R]e[n]me" })
 
-                -- If you have multiple servers active in one file it'll try to format using all of them, and I can't guarantee the order.
-                lsp_zero.buffer_autoformat()
             end)
-
-            lsp_zero.format_on_save({
-                format_opts = {
-                    async = false,
-                    timeout_ms = 10000,
-                },
-            })
 
             require('mason-lspconfig').setup({
                 -- run :help lspconfig-all to see the list of all lsp servers

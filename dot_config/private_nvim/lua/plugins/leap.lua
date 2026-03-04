@@ -1,10 +1,7 @@
 return {
-    'ggandor/leap.nvim',
+    url = "https://codeberg.org/andyg/leap.nvim",
     config = function()
-        require('leap').create_default_mappings()
-
-        -- Explicitly map `S` for backward search
-        vim.keymap.set('n', 's', '<Plug>(leap-forward-to)', { silent = true, desc = "Leap: Jump forward" })
-        vim.keymap.set('n', 'S', '<Plug>(leap-backward-to)', { silent = true, desc = "Leap: Jump backward" })
+        vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap)', { silent = true, desc = "Leap: Jump" })
+        vim.keymap.set('n', 'S', '<Plug>(leap-from-window)', { silent = true, desc = "Leap: Jump to window" })
     end,
 }

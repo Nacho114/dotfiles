@@ -1,6 +1,6 @@
 return {
     "ahmedkhalf/project.nvim",
-    lazy = false,
+    lazy = true,
     config = function()
         require("project_nvim").setup({
             -- Detection methods: lsp uses the native neovim lsp, pattern uses glob pattern matching

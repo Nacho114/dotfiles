@@ -1,6 +1,5 @@
 return {
     "AckslD/swenv.nvim",
-    lazy = false,
     dependencies = { "nvim-lua/plenary.nvim" },
     event = { "BufEnter *.py" },
     cmd = { "SwenvPick", "SwenvAuto" },
