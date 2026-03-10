@@ -70,6 +70,7 @@ return {
                 lsp_zero.default_keymaps({ buffer = bufnr, exclude = { '<F4>', '<F2>' }, })
 
                 -- custom keybindings
+                vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to definition" })
                 vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', { buffer = bufnr },
                     { desc = "[C]ode [A]ctions" })
                 vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', { buffer = bufnr },
