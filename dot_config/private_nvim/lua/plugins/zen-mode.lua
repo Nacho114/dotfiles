@@ -6,6 +6,11 @@ return {
             width = 90,
             options = {},
         },
+        plugins = {
+            options = {
+                laststatus = 3,
+            },
+        },
     },
     keys = {
         { "<leader>zz", function()

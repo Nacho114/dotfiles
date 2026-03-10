@@ -30,6 +30,7 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 -- Appearance
+vim.o.winborder = 'rounded'
 vim.opt.guicursor = "n:block,i:ver25"
 vim.opt.termguicolors = true
 vim.opt.colorcolumn = "80"

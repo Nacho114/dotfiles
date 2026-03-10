@@ -71,10 +71,10 @@ return {
 
                 -- custom keybindings
                 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to definition" })
-                vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', { buffer = bufnr },
-                    { desc = "[C]ode [A]ctions" })
-                vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', { buffer = bufnr },
-                    { desc = "[R]e[n]me" })
+                vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>',
+                    { buffer = bufnr, desc = "Code actions" })
+                vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>',
+                    { buffer = bufnr, desc = "Rename symbol" })
 
             end)
 
